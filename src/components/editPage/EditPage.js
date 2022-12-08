@@ -1,7 +1,17 @@
 export const EditPage = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const title = formData.get("title");
+    const category = formData.get("category");
+    const maxLevel = formData.get("maxLevel");
+    const image = formData.get("imageUrl");
+    const summary = formData.get("summary");
+  };
+
   return (
     <section id="edit-page" className="auth">
-      <form id="edit">
+      <form id="edit" onSubmit={onSubmit}>
         <div className="container">
           <h1>Edit Game</h1>
           <label htmlFor="leg-title">Legendary title:</label>
