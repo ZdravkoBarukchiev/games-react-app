@@ -1,7 +1,16 @@
 export const CreatePage = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const title = formData.get("title");
+    const category = formData.get("category");
+    const maxLevel = formData.get("maxLevel");
+    const image = formData.get("imageUrl");
+    const summary = formData.get("summary");
+  };
   return (
     <section id="create-page" className="auth">
-      <form id="create">
+      <form id="create" onSubmit={onSubmit}>
         <div className="container">
           <h1>Create Game</h1>
           <label htmlFor="leg-title">Legendary title:</label>
