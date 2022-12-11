@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 
 export const Game = (props) => {
-  
   return (
     <div className="allGames">
       <div className="allGames-info">

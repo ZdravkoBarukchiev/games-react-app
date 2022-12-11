@@ -19,14 +19,14 @@ function App() {
   const userLogin = (userData) => {
     setLoginData(userData);
   };
-  const userLogout=()=>{
-    setLoginData({})
-  }
+  const userLogout = () => {
+    setLoginData({});
+  };
 
   return (
     <div id="box">
       <LoginContext.Provider value={{ loginData, userLogin, userLogout }}>
-        <GameContext.Provider value={{games}}>
+        <GameContext.Provider value={{ games }}>
           <Header />
           <main id="main-content"></main>
           <Routes>

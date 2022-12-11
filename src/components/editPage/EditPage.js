@@ -7,6 +7,7 @@ export const EditPage = () => {
     const maxLevel = formData.get("maxLevel");
     const image = formData.get("imageUrl");
     const summary = formData.get("summary");
+    console.log(formData);
   };
 
   return (

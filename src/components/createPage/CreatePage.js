@@ -11,7 +11,7 @@ export const CreatePage = () => {
     const title = formData.get("title");
     const category = formData.get("category");
     const maxLevel = formData.get("maxLevel");
-    const image = formData.get("imageUrl");
+    const imageUrl = formData.get("imageUrl");
     const summary = formData.get("summary");
     const url = "http://localhost:3030/data/games";
     const token = loginData.accessToken;
@@ -22,7 +22,7 @@ export const CreatePage = () => {
         "Content-Type": "application/json",
         "X-Authorization": token,
       },
-      body: JSON.stringify({ title, category, maxLevel, image, summary }),
+      body: JSON.stringify({ title, category, maxLevel, imageUrl, summary }),
     })
       .then((res) => res.json())
       .then((result) => {
