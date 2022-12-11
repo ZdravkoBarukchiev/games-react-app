@@ -1,4 +1,10 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../context/loginContext";
+
 export const CreatePage = () => {
+  const { loginData } = useContext(LoginContext);
+  const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -7,6 +13,21 @@ export const CreatePage = () => {
     const maxLevel = formData.get("maxLevel");
     const image = formData.get("imageUrl");
     const summary = formData.get("summary");
+    const url = "http://localhost:3030/data/games";
+    const token = loginData.accessToken;
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Authorization": token,
+      },
+      body: JSON.stringify({ title, category, maxLevel, image, summary }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        navigate("/");
+      });
   };
   return (
     <section id="create-page" className="auth">
