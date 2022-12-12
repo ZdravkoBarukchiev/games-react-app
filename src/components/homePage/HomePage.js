@@ -17,8 +17,6 @@ export const HomePage = () => {
         {games.map((x) => (
           <LastGames key={x._id} name={x.title} img={x.imageUrl} />
         ))}
-
-
         {/* Display paragraph: If there is no games  */}
         <p className="no-articles">No games yet</p>
       </div>
