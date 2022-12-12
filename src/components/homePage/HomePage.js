@@ -18,7 +18,6 @@ export const HomePage = () => {
           <LastGames key={x._id} name={x.title} img={x.imageUrl} />
         ))}
 
-        <LastGames />
 
         {/* Display paragraph: If there is no games  */}
         <p className="no-articles">No games yet</p>
