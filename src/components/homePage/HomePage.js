@@ -3,7 +3,6 @@ import { useGameService } from "../../services/gameService";
 
 export const HomePage = () => {
   const games = useGameService();
-
   return (
     <section id="welcome-world">
       <div className="welcome-message">
