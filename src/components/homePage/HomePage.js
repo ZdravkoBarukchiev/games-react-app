@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { GameContext } from "../../context/gameContext";
 import { LastGames } from "./lastGames/LastGames";
+import { useGameService } from "../../services/gameService";
 
 export const HomePage = () => {
-  const { games } = useContext(GameContext);
+  const games = useGameService();
 
   return (
     <section id="welcome-world">
