@@ -13,11 +13,13 @@ export const HomePage = () => {
       <img src="./images/four_slider_img01.png" alt="hero" />
       <div id="home-page">
         <h1>Latest Games</h1>
-        {games.map((x) => (
-          <LastGames key={x._id} name={x.title} img={x.imageUrl} />
-        ))}
-        {/* Display paragraph: If there is no games  */}
-        <p className="no-articles">No games yet</p>
+        {games.length > 0 ? (
+          games.map((x) => (
+            <LastGames key={x._id} name={x.title} img={x.imageUrl} />
+          ))
+        ) : (
+          <p className="no-articles">No games yet</p>
+        )}
       </div>
     </section>
   );
