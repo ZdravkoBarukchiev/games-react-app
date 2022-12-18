@@ -3,6 +3,10 @@ import { useGameService } from "../../services/gameService";
 
 export const HomePage = () => {
   const games = useGameService();
+  let revercedGames = [];
+  for (let el of games) {
+    revercedGames.unshift(el);
+  }
   return (
     <section id="welcome-world">
       <div className="welcome-message">
@@ -12,8 +16,8 @@ export const HomePage = () => {
       <img src="./images/four_slider_img01.png" alt="hero" />
       <div id="home-page">
         <h1>Latest Games</h1>
-        {games.length > 0 ? (
-          games.map((x) => (
+        {revercedGames.length > 0 ? (
+          revercedGames.map((x) => (
             <LastGames key={x._id} name={x.title} img={x.imageUrl} />
           ))
         ) : (
