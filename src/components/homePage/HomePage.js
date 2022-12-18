@@ -4,9 +4,7 @@ import { useGameService } from "../../services/gameService";
 export const HomePage = () => {
   const games = useGameService();
   let revercedGames = [];
-  for (let el of games) {
-    revercedGames.unshift(el);
-  }
+  games.forEach((g) => revercedGames.unshift(g));
   return (
     <section id="welcome-world">
       <div className="welcome-message">
