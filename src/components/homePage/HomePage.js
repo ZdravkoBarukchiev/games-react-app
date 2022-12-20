@@ -16,7 +16,7 @@ export const HomePage = () => {
         <h1>Latest Games</h1>
         {revercedGames.length > 0 ? (
           revercedGames.map((x) => (
-            <LastGames key={x._id} name={x.title} img={x.imageUrl} />
+            <LastGames key={x._id} name={x.title} img={x.imageUrl} _id={x._id} />
           ))
         ) : (
           <p className="no-articles">No games yet</p>
