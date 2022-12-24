@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const DetailsPage = () => {
   const gameObj = useParams();
@@ -18,7 +19,7 @@ export const DetailsPage = () => {
       <h1>Game Details</h1>
       <div className="info-section">
         <div className="game-header">
-          <img className="game-img" src={currentGame.imageUrl} />
+          <img className="game-img" src={currentGame.imageUrl} alt="" />
           <h1>{currentGame.title}</h1>
           <span className="levels">MaxLevel:{currentGame.maxLevel} </span>
           <p className="type"></p>
@@ -41,12 +42,12 @@ export const DetailsPage = () => {
         </div>
         {/* Edit/Delete buttons ( Only for creator of this game )  */}
         <div className="buttons">
-          <a href="#" className="button">
+          <Link to="/edit" className="button">
             Edit
-          </a>
-          <a href="#" className="button">
+          </Link>
+          <Link to="/" className="button">
             Delete
-          </a>
+          </Link>
         </div>
       </div>
       {/* Bonus */}
