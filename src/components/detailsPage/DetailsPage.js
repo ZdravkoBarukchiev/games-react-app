@@ -19,7 +19,6 @@ export const DetailsPage = () => {
       .then((res) => res.json())
       .then((result) => setCurrentGame(result));
   }, [url]);
-  console.log(currentGame);
 
   const deleteFn = (e) => {
     e.preventDefault();
