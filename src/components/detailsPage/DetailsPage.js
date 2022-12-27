@@ -63,7 +63,7 @@ export const DetailsPage = () => {
         </div>
         {/* Edit/Delete buttons ( Only for creator of this game )  */}
         <div className="buttons">
-          <Link to="/edit" className="button">
+          <Link to={`/edit/${gameId}`} className="button">
             Edit
           </Link>
           <a href="/" className="button" onClick={deleteFn}>

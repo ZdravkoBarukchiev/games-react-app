@@ -1,12 +1,36 @@
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { LoginContext } from "../../context/loginContext";
+
 export const EditPage = () => {
+  const { loginData } = useContext(LoginContext);
+  const token = loginData.accessToken;
+  const navigate = useNavigate();
+  const gameObj = useParams();
+  const gameValue = Object.values(gameObj);
+  const gameId = gameValue[0];
+  const url = `http://localhost:3030/data/games/${gameId}`;
+
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const title = formData.get("title");
     const category = formData.get("category");
     const maxLevel = formData.get("maxLevel");
-    const image = formData.get("imageUrl");
+    const imageUrl = formData.get("imageUrl");
     const summary = formData.get("summary");
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Authorization": token,
+      },
+      body: JSON.stringify({ title, category, maxLevel, imageUrl, summary }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        navigate("/");
+      });
   };
 
   return (

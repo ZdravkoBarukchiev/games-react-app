@@ -34,7 +34,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/create" element={<CreatePage />} />
-            <Route path="/edit" element={<EditPage />} />
+            <Route path="/edit/*" element={<EditPage />} />
             <Route path="/catalog" element={<Catalogues />} />
             <Route path="/catalog/*" element={<DetailsPage games={games} />} />
             <Route path="/logout" element={<Logout />} />
