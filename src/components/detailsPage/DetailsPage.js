@@ -19,6 +19,7 @@ export const DetailsPage = () => {
       .then((res) => res.json())
       .then((result) => setCurrentGame(result));
   }, [url]);
+  console.log(currentGame);
 
   const deleteFn = (e) => {
     e.preventDefault();
@@ -55,7 +56,7 @@ export const DetailsPage = () => {
               <p>Content: I rate this one quite highly.</p>
             </li>
             <li className="comment">
-              <p>Content: The best game.</p>
+              <p>{currentGame.summary}</p>
             </li>
           </ul>
           {/* Display paragraph: If there are no games in the database */}
