@@ -1,18 +1,39 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { LoginContext } from "../../context/loginContext";
 
 export const DetailsPage = () => {
+  const { loginData } = useContext(LoginContext);
+  const token = loginData.accessToken;
+  const navigate = useNavigate();
   const gameObj = useParams();
   const gameValue = Object.values(gameObj);
   const gameId = gameValue[0];
+  const url = `http://localhost:3030/data/games/${gameId}`;
 
   const [currentGame, setCurrentGame] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:3030/data/games/${gameId}`)
+    fetch(url)
       .then((res) => res.json())
       .then((result) => setCurrentGame(result));
-  }, [gameId]);
+  }, [url]);
+
+  const deleteFn = (e) => {
+    e.preventDefault();
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Authorization": token,
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        navigate("/");
+      });
+  };
 
   return (
     <section id="game-details">
@@ -45,9 +66,9 @@ export const DetailsPage = () => {
           <Link to="/edit" className="button">
             Edit
           </Link>
-          <Link to="/" className="button">
+          <a href="/" className="button" onClick={deleteFn}>
             Delete
-          </Link>
+          </a>
         </div>
       </div>
       {/* Bonus */}
