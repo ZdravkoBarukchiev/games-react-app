@@ -34,6 +34,12 @@ export const DetailsPage = () => {
         navigate("/");
       });
   };
+  const commentFn = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const comment = formData.get("comment");
+    console.log(comment);
+  };
 
   return (
     <section id="game-details">
@@ -75,7 +81,7 @@ export const DetailsPage = () => {
       {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
       <article className="create-comment">
         <label>Add new comment:</label>
-        <form className="form">
+        <form className="form" onSubmit={commentFn}>
           <textarea
             name="comment"
             placeholder="Comment......"
