@@ -1,8 +1,11 @@
 import { LastGames } from "./lastGames/LastGames";
-import { useGameService } from "../../services/gameService";
-
+import { gameService } from "../../services/gameService";
+import { useEffect, useState } from "react";
 export const HomePage = () => {
-  const games = useGameService();
+  const [games, setGames] = useState([]);
+  useEffect(() => {
+    gameService().then((result) => setGames(result));
+  }, []);
   let revercedGames = [];
   games.forEach((g) => revercedGames.unshift(g));
   return (
@@ -16,7 +19,12 @@ export const HomePage = () => {
         <h1>Latest Games</h1>
         {revercedGames.length > 0 ? (
           revercedGames.map((x) => (
-            <LastGames key={x._id} name={x.title} img={x.imageUrl} _id={x._id} />
+            <LastGames
+              key={x._id}
+              name={x.title}
+              img={x.imageUrl}
+              _id={x._id}
+            />
           ))
         ) : (
           <p className="no-articles">No games yet</p>

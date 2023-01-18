@@ -9,12 +9,15 @@ import { EditPage } from "./components/editPage/EditPage";
 import { Catalogues } from "./components/catalog/Catalogues";
 import { Logout } from "./components/Logout/Logout";
 import { GameContext } from "./context/gameContext";
-import { useGameService } from "./services/gameService";
+import { gameService } from "./services/gameService";
 import { LoginContext } from "./context/loginContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const games = useGameService();
+  const [games, setGames] = useState([]);
+  useEffect(() => {
+    gameService().then((result) => setGames(result));
+  }, []);
   const [loginData, setLoginData] = useState({});
   const userLogin = (userData) => {
     setLoginData(userData);
@@ -26,7 +29,7 @@ function App() {
   return (
     <div id="box">
       <LoginContext.Provider value={{ loginData, userLogin, userLogout }}>
-        <GameContext.Provider value={{ games }}>
+        <GameContext.Provider value={{games}}>
           <Header />
           <main id="main-content"></main>
           <Routes>

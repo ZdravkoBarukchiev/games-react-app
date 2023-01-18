@@ -1,7 +1,13 @@
-import { useGameService } from "../../services/gameService";
+//import { useGameService } from "../../services/gameService";
 import { Game } from "./game/Game";
+import { gameService } from "../../services/gameService";
+import { useEffect, useState } from "react";
 export const Catalogues = () => {
-  const games = useGameService();
+  //const games = useGameService();
+  const [games, setGame] = useState([]);
+  useEffect(() => {
+    gameService().then((result) => setGame(result));
+  }, []);
   return (
     <section id="catalog-page">
       <h1>All Games</h1>
