@@ -6,7 +6,7 @@ export const Catalogues = () => {
   //const games = useGameService();
   const [games, setGame] = useState([]);
   useEffect(() => {
-    gameService().then((result) => setGame(result));
+    gameService("").then((result) => setGame(result));
   }, []);
   return (
     <section id="catalog-page">

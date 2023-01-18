@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoginContext } from "../../context/loginContext";
+import { gameService } from "../../services/gameService";
 
 export const DetailsPage = () => {
   const { loginData } = useContext(LoginContext);
@@ -15,10 +16,8 @@ export const DetailsPage = () => {
 
   const [currentGame, setCurrentGame] = useState({});
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((result) => setCurrentGame(result));
-  }, [url]);
+    gameService(gameId).then((result) => setCurrentGame(result));
+  }, [gameId]);
 
   const deleteFn = (e) => {
     e.preventDefault();

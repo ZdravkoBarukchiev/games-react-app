@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export const HomePage = () => {
   const [games, setGames] = useState([]);
   useEffect(() => {
-    gameService().then((result) => setGames(result));
+    gameService("").then((result) => setGames(result));
   }, []);
   let revercedGames = [];
   games.forEach((g) => revercedGames.unshift(g));
