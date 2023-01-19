@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoginContext } from "../../context/loginContext";
 import { gameService } from "../../services/gameService";
+import { deleteService } from "../../services/deleteService";
 
 export const DetailsPage = () => {
   const { loginData } = useContext(LoginContext);
@@ -12,7 +13,6 @@ export const DetailsPage = () => {
   const gameObj = useParams();
   const gameValue = Object.values(gameObj);
   const gameId = gameValue[0];
-  const url = `http://localhost:3030/data/games/${gameId}`;
 
   const [currentGame, setCurrentGame] = useState({});
   useEffect(() => {
@@ -21,18 +21,11 @@ export const DetailsPage = () => {
 
   const deleteFn = (e) => {
     e.preventDefault();
-    fetch(url, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Authorization": token,
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        navigate("/");
-      });
+    deleteService(gameId, token).then((result) => {
+      navigate("/");
+    });
   };
+
   const commentFn = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
