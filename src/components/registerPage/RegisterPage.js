@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/loginContext";
+import { loginService } from "../../services/loginService";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -15,16 +16,11 @@ export const RegisterPage = () => {
     if (password !== confirmPassword) {
       return;
     }
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        userLogin(result);
-        navigate("/");
-      });
+    
+    loginService(url, email, password).then((result) => {
+      userLogin(result);
+      navigate("/");
+    });
   };
   return (
     <section id="register-page" className="content auth">

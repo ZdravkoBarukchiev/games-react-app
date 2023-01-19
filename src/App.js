@@ -18,6 +18,7 @@ function App() {
   useEffect(() => {
     gameService("").then((result) => setGames(result));
   }, []);
+
   const [loginData, setLoginData] = useState({});
   const userLogin = (userData) => {
     setLoginData(userData);
@@ -25,7 +26,6 @@ function App() {
   const userLogout = () => {
     setLoginData({});
   };
-
   return (
     <div id="box">
       <LoginContext.Provider value={{ loginData, userLogin, userLogout }}>

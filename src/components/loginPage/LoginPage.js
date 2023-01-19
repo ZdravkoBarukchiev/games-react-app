@@ -1,27 +1,22 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/loginContext";
+import { loginService } from "../../services/loginService";
 
 export const LoginPage = () => {
-  const {userLogin}=useContext(LoginContext)
-  const navigate=useNavigate()
+  const { userLogin } = useContext(LoginContext);
+  const navigate = useNavigate();
+
   const onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = Object.fromEntries(new FormData(e.target));
-    
     const url = "http://localhost:3030/users/login";
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        userLogin(result)
-        navigate('/')
-      });
-  };
 
+    loginService(url, email, password).then((result) => {
+      userLogin(result);
+      navigate("/");
+    });
+  };
   return (
     <section id="login-page" className="auth">
       <form id="login" onSubmit={onSubmit}>
