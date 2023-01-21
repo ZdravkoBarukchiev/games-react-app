@@ -1,16 +1,10 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/loginContext";
 
-export const EditPage = () => {
+export const CreateGame = () => {
   const { loginData } = useContext(LoginContext);
-  const token = loginData.accessToken;
   const navigate = useNavigate();
-  const gameObj = useParams();
-  const gameValue = Object.values(gameObj);
-  const gameId = gameValue[0];
-  const url = `http://localhost:3030/data/games/${gameId}`;
-
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -19,8 +13,11 @@ export const EditPage = () => {
     const maxLevel = formData.get("maxLevel");
     const imageUrl = formData.get("imageUrl");
     const summary = formData.get("summary");
+    const url = "http://localhost:3030/data/games";
+    const token = loginData.accessToken;
+
     fetch(url, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-Authorization": token,
@@ -32,32 +29,46 @@ export const EditPage = () => {
         navigate("/");
       });
   };
-
   return (
-    <section id="edit-page" className="auth">
-      <form id="edit" onSubmit={onSubmit}>
+    <section id="create-page" className="auth">
+      <form id="create" onSubmit={onSubmit}>
         <div className="container">
-          <h1>Edit Game</h1>
+          <h1>Create Game</h1>
           <label htmlFor="leg-title">Legendary title:</label>
-          <input type="text" id="title" name="title" defaultValue="" />
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Enter game title..."
+          />
           <label htmlFor="category">Category:</label>
-          <input type="text" id="category" name="category" defaultValue="" />
+          <input
+            type="text"
+            id="category"
+            name="category"
+            placeholder="Enter game category..."
+          />
           <label htmlFor="levels">MaxLevel:</label>
           <input
             type="number"
             id="maxLevel"
             name="maxLevel"
             min={1}
-            defaultValue=""
+            placeholder={1}
           />
           <label htmlFor="game-img">Image:</label>
-          <input type="text" id="imageUrl" name="imageUrl" defaultValue="" />
+          <input
+            type="text"
+            id="imageUrl"
+            name="imageUrl"
+            placeholder="Upload a photo..."
+          />
           <label htmlFor="summary">Summary:</label>
           <textarea name="summary" id="summary" defaultValue={""} />
           <input
             className="btn submit"
             type="submit"
-            defaultValue="Edit Game"
+            defaultValue="Create Game"
           />
         </div>
       </form>

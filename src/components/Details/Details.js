@@ -6,7 +6,7 @@ import { LoginContext } from "../../context/loginContext";
 import { gameService } from "../../services/gameService";
 import { deleteService } from "../../services/deleteService";
 
-export const DetailsPage = () => {
+export const Details = () => {
   const { loginData } = useContext(LoginContext);
   const token = loginData.accessToken;
   const navigate = useNavigate();

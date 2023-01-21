@@ -1,4 +1,4 @@
-import { LastGames } from "./lastGames/LastGames";
+import { LastGames } from "./LastGames/LastGames";
 import { gameService } from "../../services/gameService";
 import { useEffect, useState } from "react";
 export const HomePage = () => {

@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import { DetailsPage } from "./components/detailsPage/DetailsPage";
-import { Header } from "./components/header/Header";
-import { HomePage } from "./components/homePage/HomePage";
-import { LoginPage } from "./components/loginPage/LoginPage";
-import { RegisterPage } from "./components/registerPage/RegisterPage";
-import { CreatePage } from "./components/createPage/CreatePage";
-import { EditPage } from "./components/editPage/EditPage";
-import { Catalogues } from "./components/catalog/Catalogues";
+import { Details } from "./components/Details/Details";
+import { Header } from "./components/Header/Header";
+import { HomePage } from "./components/Home/HomePage";
+import { LoginPage } from "./components/Login/LoginPage";
+import { RegisterPage } from "./components/Register/RegisterPage";
+import { CreateGame } from "./components/CreateGame/CreateGame";
+import { Edit } from "./components/Edit/Edit";
+import { Catalogues } from "./components/Catalog/Catalogues";
 import { Logout } from "./components/Logout/Logout";
 import { GameContext } from "./context/gameContext";
 import { gameService } from "./services/gameService";
@@ -36,10 +36,10 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/create" element={<CreatePage />} />
-            <Route path="/edit/*" element={<EditPage />} />
+            <Route path="/create" element={<CreateGame />} />
+            <Route path="/edit/*" element={<Edit />} />
             <Route path="/catalog" element={<Catalogues />} />
-            <Route path="/catalog/*" element={<DetailsPage games={games} />} />
+            <Route path="/catalog/*" element={<Details games={games} />} />
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </GameContext.Provider>

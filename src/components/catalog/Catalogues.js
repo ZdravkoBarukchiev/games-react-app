@@ -1,5 +1,5 @@
 //import { useGameService } from "../../services/gameService";
-import { Game } from "./game/Game";
+import { Game } from "./Game/Game";
 import { gameService } from "../../services/gameService";
 import { useEffect, useState } from "react";
 export const Catalogues = () => {
